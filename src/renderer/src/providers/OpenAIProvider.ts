@@ -379,9 +379,6 @@ export default class OpenAIProvider extends BaseProvider {
     const isOpenAIReasoning = this.isOpenAIReasoning(model)
 
     const isSupportStreamOutput = () => {
-      if (isOpenAIReasoning) {
-        return false
-      }
       return streamOutput
     }
 
