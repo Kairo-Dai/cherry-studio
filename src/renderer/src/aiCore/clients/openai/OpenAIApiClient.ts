@@ -465,13 +465,13 @@ export class OpenAIAPIClient extends OpenAIBaseClient<
               : reqMessages,
           temperature: this.getTemperature(assistant, model),
           top_p: this.getTopP(assistant, model),
-          max_tokens: maxTokens,
           tools: tools.length > 0 ? tools : undefined,
           service_tier: this.getServiceTier(model),
           ...this.getProviderSpecificParameters(assistant, model),
           ...this.getReasoningEffort(assistant, model),
           ...getOpenAIWebSearchParams(model, enableWebSearch),
-          ...this.getCustomParameters(assistant)
+          ...this.getCustomParameters(assistant),
+          ...(maxTokens && { max_tokens: maxTokens })
         }
 
         // Create the appropriate parameters object based on whether streaming is enabled
